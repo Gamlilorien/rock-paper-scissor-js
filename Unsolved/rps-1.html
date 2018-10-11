@@ -41,20 +41,21 @@
         
         // Now enter If statements for EVERY outcome...
         // There are essientally 9 total: 3 ties, 3 user wins, and 3 PC wins
-        if (userText === "r" && pcObject === "s") {
-          // user wins
+        // Lets reslove all the TIES first
+        if ( (userText === "r" && pcObject === "r") || (userText === "p" && pcObject === "p") || (userText === "s" && pcObject === "s") ) {
+          // tie game
+          ties++
+        // Otherwise, check for any possible wins
+        } else if ( (userText === "r" && pcObject === "s") || (userText === "p" && pcObject === "r") || (userText === "s" && pcObject === "p") ) {
+          // User wins!
           uWins++
-        } else if () {
-
+        } else if ( (userText === "r" && pcObject === "p") || (userText === "p" && pcObject === "s") || (userText === "s" && pcObject === "r") ) {
+          // PC wins :(
+          pcWins++
         }
-
-
-
-
-
-
+      // End of initial IF
       }
-
+    // End of document.onkeyup event
     };
   </script>
 
