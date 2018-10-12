@@ -10,13 +10,14 @@
 
   <div id="game">
 
+    <h3>Enter either: <span id="user-text"><strong>r, p, or s</strong></span></h3>
+
+    <!-- There needs to be spans for inserting the current scores in HTML -->
+    <p>User Wins: <span id="userScore"><strong>0</strong></span></p>
+    <p>PC Wins: <span id="pcScore"><strong>0</strong></span></p>
+    <p>Ties: <span id="drawScore"><strong>0</strong></span></p>
+
   </div>
-
-<h3>Enter either: <span id="user-text"><strong>r, p, or s</strong></span></h3>
-
-<p>User Wins: </p>
-<p>PC Wins: </p>
-<p>Ties: </p>
 
   <script type="text/javascript">
   
@@ -32,7 +33,7 @@
     // Whenever a key is pressed, run code for game.
     document.onkeyup = function(event) {
       userText.textContent = event.key;
-      // Decide to re-define the User choice here because userText was not returning desired result in the console log.
+      // Decided to re-define the User choice here because userText was not returning desired result in the console log.
       var uObject = event.key
 
       // This somehow allows us to randomly select one of the items from our 'Objects' array
@@ -48,20 +49,25 @@
         
         // Now enter If statements for EVERY outcome...
         // There are essientally 9 total: 3 ties, 3 user wins, and 3 PC wins
-        // Lets reslove all the TIES first
+        // First, lets reslove all possible TIES
         if ( (uObject === "r" && pcObject === "r") || (uObject === "p" && pcObject === "p") || (uObject === "s" && pcObject === "s") ) {
           // tie game
           ties++
           console.log("Ties: " + ties);
+          // Add score to HTML body
+          drawScore.textContent = ties;
         // Otherwise, check for any possible wins
         } else if ( (uObject === "r" && pcObject === "s") || (uObject === "p" && pcObject === "r") || (uObject === "s" && pcObject === "p") ) {
           // user wins!
           uWins++
           console.log("User wins: " + uWins);
+          userScore.textContent = uWins;
+          // Lastly, check for any possible losses
         } else if ( (uObject === "r" && pcObject === "p") || (uObject === "p" && pcObject === "s") || (uObject === "s" && pcObject === "r") ) {
           // PC wins :(
           pcWins++
           console.log("PC wins: " + pcWins);
+          pcScore.textContent = pcWins;
         }
       // End of initial IF
       }
