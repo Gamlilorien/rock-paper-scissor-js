@@ -1,6 +1,6 @@
 ### File
 
-* [`rps-2`](Unsolved/rps-2.html)
+* rps-1.html
 
 ### Instructions
 
