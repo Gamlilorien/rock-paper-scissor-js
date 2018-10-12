@@ -14,6 +14,10 @@
 
 <h3>Enter either: <span id="user-text"><strong>r, p, or s</strong></span></h3>
 
+<p>User Wins: </p>
+<p>PC Wins: </p>
+<p>Ties: </p>
+
   <script type="text/javascript">
   
     // We define possible answers as an array for the computer to randomly pick from
@@ -21,42 +25,51 @@
     // We need a way to capture the key the user enters as their ANSWER for the game
     var userText = document.getElementById("user-text");
     // We also need variables for all the game outcomes like user wins, PC wins, or a tie.
-    var uWin = 0;
+    var uWins = 0;
     var ties = 0;
-    var pcWin =0;
+    var pcWins = 0;
 
     // Whenever a key is pressed, run code for game.
     document.onkeyup = function(event) {
       userText.textContent = event.key;
+      // Decide to re-define the User choice here because userText was not returning desired result in the console log.
+      var uObject = event.key
 
       // This somehow allows us to randomly select one of the items from our 'Objects' array
       // We will use this as our Computer's ANSWER
       var pcObject = objects[Math.floor(Math.random()*objects.length)];
 
       // Added this to verify the PC's answer
-      console.log(pcObject);
+      console.log("PC chooses: " + pcObject);
+      console.log("User chooses: " + uObject);
 
       //fist only play if user enters a valid entry (ie r, p, or s)
-      if ( (userText === "r") || (userText === "p") || (userText === "s")) {
+      if ( (uObject === "r") || (uObject === "p") || (uObject === "s")) {
         
         // Now enter If statements for EVERY outcome...
         // There are essientally 9 total: 3 ties, 3 user wins, and 3 PC wins
         // Lets reslove all the TIES first
-        if ( (userText === "r" && pcObject === "r") || (userText === "p" && pcObject === "p") || (userText === "s" && pcObject === "s") ) {
+        if ( (uObject === "r" && pcObject === "r") || (uObject === "p" && pcObject === "p") || (uObject === "s" && pcObject === "s") ) {
           // tie game
           ties++
+          console.log("Ties: " + ties);
         // Otherwise, check for any possible wins
-        } else if ( (userText === "r" && pcObject === "s") || (userText === "p" && pcObject === "r") || (userText === "s" && pcObject === "p") ) {
-          // User wins!
+        } else if ( (uObject === "r" && pcObject === "s") || (uObject === "p" && pcObject === "r") || (uObject === "s" && pcObject === "p") ) {
+          // user wins!
           uWins++
-        } else if ( (userText === "r" && pcObject === "p") || (userText === "p" && pcObject === "s") || (userText === "s" && pcObject === "r") ) {
+          console.log("User wins: " + uWins);
+        } else if ( (uObject === "r" && pcObject === "p") || (uObject === "p" && pcObject === "s") || (uObject === "s" && pcObject === "r") ) {
           // PC wins :(
           pcWins++
+          console.log("PC wins: " + pcWins);
         }
       // End of initial IF
       }
     // End of document.onkeyup event
     };
+
+  
+
   </script>
 
 </body>
