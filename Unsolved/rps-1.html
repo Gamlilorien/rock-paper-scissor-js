@@ -10,9 +10,13 @@
 
   <div id="game">
 
-    <h3>Enter either: <span id="user-text"><strong>r, p, or s</strong></span></h3>
+    <h3>Enter either: r, p, or s to play.</h3>
 
-    <!-- There needs to be spans for inserting the current scores in HTML -->
+    <!-- Added these steps so the user can see the results of each match -->
+    <h4>User Entered: <span id="user-text"><strong>?</strong></span></h4>
+    <h4>PC Entered: <span id="pcText"><strong>?</strong></span></h4>
+
+    <!-- There needs to be spans here for inserting the current scores within the HTML -->
     <p>User Wins: <span id="userScore"><strong>0</strong></span></p>
     <p>PC Wins: <span id="pcScore"><strong>0</strong></span></p>
     <p>Ties: <span id="drawScore"><strong>0</strong></span></p>
@@ -39,6 +43,8 @@
       // This somehow allows us to randomly select one of the items from our 'Objects' array
       // We will use this as our Computer's ANSWER
       var pcObject = objects[Math.floor(Math.random()*objects.length)];
+      // Set this value to the HTML
+      pcText.textContent = pcObject;
 
       // Added this to verify the PC's answer
       console.log("PC chooses: " + pcObject);
